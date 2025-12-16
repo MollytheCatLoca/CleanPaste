@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CleanPaste Settings</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">
+        <span class="logo-icon">CP</span>
+        <span class="logo-text">CleanPaste</span>
+      </div>
+      <span class="version">v1.0.0</span>
+    </header>
+
+    <!-- Main Settings -->
+    <main class="settings">
+      <!-- Master Toggle -->
+      <div class="setting-group">
+        <div class="setting-row">
+          <div class="setting-info">
+            <label for="enabled">Enable CleanPaste</label>
+            <span class="setting-description">Clean and normalize pasted text</span>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="enabled" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Line-by-Line Section -->
+      <div class="section-header">Line-by-Line Mode</div>
+
+      <div class="setting-group">
+        <div class="setting-row">
+          <div class="setting-info">
+            <label for="lineByLineEnabled">Enable Line-by-Line</label>
+            <span class="setting-description">Send each line as separate message</span>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="lineByLineEnabled">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-row" id="separatorRow">
+          <div class="setting-info">
+            <label for="lineByLineSeparator">Split by</label>
+          </div>
+          <select id="lineByLineSeparator" class="select">
+            <option value="paragraph">Paragraph</option>
+            <option value="line">Line</option>
+          </select>
+        </div>
+
+        <div class="setting-row" id="delayRow">
+          <div class="setting-info">
+            <label for="lineByLineDelay">Delay between messages</label>
+            <span class="setting-value" id="delayValue">800ms</span>
+          </div>
+          <input type="range" id="lineByLineDelay" class="slider" min="300" max="2000" step="100" value="800">
+        </div>
+
+        <div class="setting-row" id="maxSegmentsRow">
+          <div class="setting-info">
+            <label for="lineByLineMaxSegments">Max messages</label>
+          </div>
+          <select id="lineByLineMaxSegments" class="select">
+            <option value="5">5</option>
+            <option value="10" selected>10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Cleanup Section -->
+      <div class="section-header">Cleanup</div>
+
+      <div class="setting-group">
+        <div class="setting-row">
+          <div class="setting-info">
+            <label for="removeMetadata">Remove WhatsApp metadata</label>
+            <span class="setting-description">Strip timestamps and sender names</span>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="removeMetadata">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Display Section -->
+      <div class="section-header">Display</div>
+
+      <div class="setting-group">
+        <div class="setting-row">
+          <div class="setting-info">
+            <label for="showBadge">Show badge count</label>
+            <span class="setting-description">Display paste count on icon</span>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="showBadge" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Pro Features (Locked) -->
+      <div class="section-header">Pro Features</div>
+
+      <div class="setting-group pro-locked">
+        <div class="pro-feature">
+          <span class="lock-icon">🔒</span>
+          <span>AI Smart Format</span>
+        </div>
+        <div class="pro-feature">
+          <span class="lock-icon">🔒</span>
+          <span>Tone Adjustment</span>
+        </div>
+        <div class="pro-feature">
+          <span class="lock-icon">🔒</span>
+          <span>Message Variations</span>
+        </div>
+        <button class="pro-button" id="upgradeBtn">Upgrade to Pro</button>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <a href="#" id="feedbackLink">Feedback</a>
+      <span class="separator">|</span>
+      <a href="#" id="helpLink">Help</a>
+    </footer>
+  </div>
+
+  <script type="module" src="popup.ts"></script>
+</body>
+</html>

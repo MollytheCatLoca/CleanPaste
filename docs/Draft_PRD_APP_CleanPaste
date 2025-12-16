@@ -1,0 +1,332 @@
+PRD – Clean Paste for WhatsApp Web
+
+Documento de Requerimientos de Producto
+
+1. Contexto y problema a resolver
+
+WhatsApp Web es hoy una de las principales herramientas de comunicación profesional informal: ventas, brokers, recruiters, abogados, founders, soporte, equipos comerciales y directivos lo usan a diario para enviar mensajes largos, explicativos y sensibles en forma.
+
+Sin embargo, WhatsApp Web no es un editor de texto, sino un renderer básico.
+Cuando los usuarios copian texto desde:
+
+ChatGPT
+
+Google Docs
+
+Notion
+
+Emails
+
+CRMs
+
+Editores web modernos
+
+el contenido llega con:
+
+espacios invisibles o no separables
+
+saltos de línea inconsistentes
+
+listas mal renderizadas
+
+comillas y guiones tipográficos
+
+bloques visuales que “se ven mal” al pegar
+
+Esto genera mensajes que:
+
+se perciben poco cuidados
+
+rompen la legibilidad
+
+requieren correcciones manuales
+
+hacen perder tiempo y foco
+
+El problema no es el contenido, sino el proceso de pegado.
+
+2. Objetivo del producto
+
+Desarrollar una extensión de Chrome para WhatsApp Web que actúe como una capa invisible de edición técnica, limpiando y normalizando el texto en el momento del pegado, para que los mensajes se vean claros, profesionales y legibles sin intervención manual.
+
+El objetivo es:
+
+mejorar la calidad visual del mensaje
+
+reducir fricción en la escritura
+
+no alterar el contenido semántico
+
+no agregar complejidad al flujo del usuario
+
+3. Principios de diseño del producto
+
+Invisible por defecto: el usuario no “usa” la extensión, simplemente funciona.
+
+Sin aprendizaje: no requiere tutorial ni configuración inicial.
+
+Conservadora: no reescribe textos, solo los normaliza.
+
+Foco profesional: orientada a mensajes largos o sensibles.
+
+Bajo riesgo: permisos mínimos, sin acceso a datos externos.
+
+Monetizable sin fricción: free útil, pro claramente valioso.
+
+4. Público objetivo
+
+Usuarios intensivos de WhatsApp Web que:
+
+envían mensajes largos
+
+cuidan forma y claridad
+
+trabajan en contextos B2B o profesionales
+
+Ejemplos:
+
+ventas y desarrollo de negocios
+
+real estate
+
+recruiters
+
+abogados y consultores
+
+founders y directivos
+
+soporte y customer success
+
+5. Propuesta de valor
+
+“Cada vez que pegás texto en WhatsApp Web, queda bien.”
+
+No promete inteligencia, ni creatividad, ni edición de estilo.
+Promete orden, limpieza y legibilidad.
+
+6. Alcance inicial
+
+Incluye:
+
+WhatsApp Web (web.whatsapp.com)
+
+Chrome / Chromium (MV3)
+
+Pegado de texto plano
+
+Excluye (por ahora):
+
+WhatsApp Desktop nativo
+
+Mobile
+
+Otras plataformas (Telegram, LinkedIn, Gmail)
+
+Reescritura semántica o de tono
+
+Capítulo 7 – MVP (Producto Mínimo Viable)
+
+Este capítulo define exactamente qué se construye en la primera versión y qué no.
+
+7.1 Objetivo del MVP
+
+Validar que:
+
+el problema existe y duele
+
+la solución es percibida como útil
+
+los usuarios la mantienen instalada
+
+existe disposición a pagar por mejoras
+
+El MVP debe:
+
+ser estable
+
+ser simple
+
+resolver el problema central sin features accesorias
+
+7.2 Funcionalidades del MVP
+7.2.1 Clean Paste automático (core)
+
+Al detectar un evento de pegado (paste) en un campo editable de WhatsApp Web, la extensión debe:
+
+Interceptar el texto del clipboard en formato text/plain.
+
+Cancelar el pegado original.
+
+Aplicar una función de normalización.
+
+Insertar el texto limpio en la posición actual del cursor.
+
+La limpieza incluye:
+
+normalización Unicode (NFKC)
+
+reemplazo de espacios no separables y espacios invisibles por espacio estándar
+
+eliminación de caracteres zero-width
+
+unificación de saltos de línea
+
+limitación de líneas en blanco consecutivas
+
+colapso de espacios múltiples
+
+eliminación de espacios al final de línea
+
+No incluye:
+
+corrección gramatical
+
+cambio de palabras
+
+acortado del texto
+
+reescritura de frases
+
+7.2.2 Normalización de listas (básica)
+
+Cuando el texto contiene:
+
+bullets tipo •
+
+guiones largos – o —
+
+El MVP puede:
+
+convertirlos a -
+
+mantener la estructura de lista simple
+
+No incluye:
+
+detección avanzada de listas
+
+conversión semántica de párrafos a bullets
+
+7.2.3 Modo pasivo por defecto
+
+La extensión:
+
+se activa automáticamente al instalarse
+
+no muestra UI visible
+
+no interrumpe el flujo
+
+Indicador mínimo:
+
+log discreto o badge interno solo para debug (no para usuario final)
+
+7.2.4 Free tier funcional
+
+El MVP incluye un modo gratuito que:
+
+permite usar Clean Paste
+
+puede tener una limitación simple (por ejemplo, cantidad diaria de pegados)
+
+nunca rompe el mensaje del usuario
+
+La limitación debe ser:
+
+suave
+
+no intrusiva
+
+explicable en una landing
+
+7.3 Qué NO incluye el MVP (explícitamente)
+
+Para evitar scope creep, el MVP no incluye:
+
+perfiles de estilo
+
+botones flotantes
+
+UI compleja
+
+login obligatorio
+
+dashboards
+
+analytics avanzados
+
+soporte multi-plataforma
+
+integraciones externas
+
+Todo eso queda fuera hasta validar tracción.
+
+7.4 Arquitectura técnica del MVP
+
+Chrome Extension Manifest V3
+
+Content Script inyectado solo en web.whatsapp.com
+
+Sin background service worker obligatorio
+
+Sin acceso a red externo en la versión inicial
+
+Sin recolección de datos del usuario
+
+Código:
+
+JavaScript o TypeScript
+
+Sin framework pesado
+
+Build opcional (no obligatorio para MVP)
+
+7.5 Permisos mínimos
+
+host_permissions: https://web.whatsapp.com/*
+
+Sin permisos globales de clipboard
+
+Sin acceso a tabs
+
+Sin tracking
+
+Esto reduce fricción en aprobación de la Store.
+
+7.6 Criterios de éxito del MVP
+
+El MVP se considera exitoso si:
+
+los usuarios lo dejan instalado más de 7 días
+
+el “pegado limpio” es percibido como mejora inmediata
+
+no genera bugs visibles en WhatsApp Web
+
+no requiere soporte constante
+
+al menos un % pequeño muestra interés en versión Pro
+
+7.7 Riesgos conocidos del MVP
+
+Cambios en el DOM de WhatsApp Web
+
+Cambios en el comportamiento del editor contenteditable
+
+Limitaciones de execCommand (deprecated pero aún funcional)
+
+Diferencias de comportamiento entre navegadores Chromium
+
+Estos riesgos son aceptables para MVP.
+
+7.8 Próximo paso post-MVP (no incluido)
+
+Landing page con ejemplos antes/después
+
+Unlock Pro (licencia o email)
+
+Atajos de teclado
+
+Perfiles de formato
+
+Expansión a otras plataformas
