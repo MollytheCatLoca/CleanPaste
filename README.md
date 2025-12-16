@@ -178,4 +178,4 @@ npm run build    # Build para producción
 
 ---
 
-*CleanPaste v1.0.0 - Diciembre 2024*
+*CleanPaste v1.0.0 - Diciembre 2025*

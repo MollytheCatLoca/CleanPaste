@@ -1,7 +1,7 @@
 # CleanPaste - Product Requirements Document
 
 **Version:** 1.0
-**Last Updated:** December 2024
+**Last Updated:** December 2025
 **Status:** Ready for Development
 
 ---
@@ -900,8 +900,8 @@ User pastes text (Ctrl+V)
 
 | Version | Date | Changes |
 |---------|------|---------|
-| 1.0 | December 2024 | Initial complete PRD |
-| 1.1 | December 2024 | Added: Settings Panel, Line-by-Line Mode, AI Pro Features, Updated Roadmap |
+| 1.0 | December 2025 | Initial complete PRD |
+| 1.1 | December 2025 | Added: Settings Panel, Line-by-Line Mode, AI Pro Features, Updated Roadmap |
 
 ---
 
